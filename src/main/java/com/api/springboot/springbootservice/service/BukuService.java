@@ -13,7 +13,9 @@ public interface BukuService {
     List<Buku> findAll();
 
     Buku savedBuku(BukuForm bukuForm);
-
-    BukuModel disabledBuku(BukuForm bukuForm);
+    
+    Buku UpdateBuku(BukuForm bukuForm);
+    
+    Buku disabledBuku(BukuForm bukuForm);
 
 }

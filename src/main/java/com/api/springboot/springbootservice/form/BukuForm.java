@@ -8,7 +8,7 @@ public class BukuForm {
     private String judul;
     private String pengarang;
     private String penerbit;
-    private int jumlah_halaman;
+    private int jumlahHalaman;
     private int jumlah;
     private boolean validated;
     private boolean newBuku = false;
@@ -23,7 +23,7 @@ public class BukuForm {
         this.judul = buku.getJudul();
         this.pengarang = buku.getPengarang();
         this.penerbit = buku.getPenerbit();
-        this.jumlah_halaman = buku.getJumlahHalaman();
+        this.jumlahHalaman = buku.getJumlahHalaman();
         this.jumlah = buku.getJumlah();
         this.validated = buku.isValidated();
     }
@@ -60,12 +60,12 @@ public class BukuForm {
         this.penerbit = penerbit;
     }
 
-    public int getJumlah_halaman(){
-        return jumlah_halaman;
+    public int getJumlahHalaman() {
+    	return jumlahHalaman;
     }
-
-    public void setJumlah_halaman(int jumlah_halaman){
-        this.jumlah_halaman = jumlah_halaman;
+    
+    public void setJumlahHalaman(int jumlahHalaman) {
+    	this.jumlahHalaman = jumlahHalaman;
     }
 
     public int getJumlah(){

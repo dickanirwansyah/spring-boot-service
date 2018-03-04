@@ -31,7 +31,12 @@ public class BukuServiceImpl implements BukuService {
     }
 
     @Override
-    public BukuModel disabledBuku(BukuForm bukuForm) {
-        return null;
+    public Buku disabledBuku(BukuForm bukuForm) {
+        return bukuDao.disabledBuku(bukuForm);
     }
+
+	@Override
+	public Buku UpdateBuku(BukuForm bukuForm) {
+		return bukuDao.updateBuku(bukuForm);
+	}
 }

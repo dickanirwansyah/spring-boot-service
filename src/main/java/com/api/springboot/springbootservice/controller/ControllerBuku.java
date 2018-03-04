@@ -32,11 +32,24 @@ public class ControllerBuku {
                 .orElse(new ResponseEntity<BukuModel>(HttpStatus.BAD_REQUEST));
     }
 
+    @PostMapping(value ="/api/buku/update")
+    public ResponseEntity<Buku> updated(@RequestBody BukuForm bukuForm){
+    	return Optional.ofNullable(bukuService.UpdateBuku(bukuForm))
+    			.map(resulset -> new ResponseEntity<>(resulset, HttpStatus.OK))
+    			.orElse(new ResponseEntity<Buku>(HttpStatus.BAD_REQUEST));
+    }
+    
     @PostMapping(value = "/api/buku/create")
     public ResponseEntity<Buku> created(@RequestBody BukuForm bukuForm){
         return Optional.ofNullable(bukuService.savedBuku(bukuForm))
                 .map(resultset -> new ResponseEntity<>(resultset,HttpStatus.CREATED))
                 .orElse(new ResponseEntity<Buku>(HttpStatus.BAD_REQUEST));
     }
-
+    
+    @PostMapping(value = "/api/buku/disabled")
+    public ResponseEntity<Buku> disabled(@RequestBody BukuForm bukuForm){
+    	return Optional.ofNullable(bukuService.disabledBuku(bukuForm))
+    			.map(resultset -> new ResponseEntity<>(resultset, HttpStatus.OK))
+    			.orElse(new ResponseEntity<Buku>(HttpStatus.BAD_REQUEST));
+    }
 }

@@ -28,7 +28,6 @@ public class BukuDaoImpl implements BukuDao{
 
         String idbuku = bukuForm.getIdbuku();
         Buku buku = null;
-        Buku b = new Buku();
         boolean isNew = false;
 
         if(idbuku == null){
@@ -40,7 +39,7 @@ public class BukuDaoImpl implements BukuDao{
             buku.setPenerbit(bukuForm.getPenerbit());
             buku.setPengarang(bukuForm.getPengarang());
             buku.setJumlah(bukuForm.getJumlah());
-            buku.setJumlahHalaman(bukuForm.getJumlah_halaman());
+            buku.setJumlahHalaman(bukuForm.getJumlahHalaman());
 
             bukuRepository.save(buku);
         }
@@ -49,17 +48,32 @@ public class BukuDaoImpl implements BukuDao{
 
     @Override
     public Buku disabledBuku(BukuForm bukuForm) {
-        return null;
+        
+    	String idbuku = bukuForm.getIdbuku();
+    	Buku buku = null;
+    	if(idbuku!=null) {
+    		buku = new Buku();
+    		buku = this.findByIdbuku(idbuku);
+    	}
+    	
+    	buku.setIdbuku(bukuForm.getIdbuku());
+    	buku.setJudul(bukuForm.getJudul());
+    	buku.setPenerbit(bukuForm.getPenerbit());
+    	buku.setPengarang(bukuForm.getPengarang());
+    	buku.setJumlah(bukuForm.getJumlah());
+    	buku.setJumlahHalaman(bukuForm.getJumlahHalaman());
+    	buku.setValidated(false);
+    	
+    	return bukuRepository.save(buku);
     }
 
     @Override
     public List<Buku> getListBuku() {
-        return bukuRepository.findAll();
+       String jpql="SELECT b FROM Buku b WHERE b.validated=true";
+       return entityManager.createQuery(jpql).getResultList();
     }
 
-    private List<Buku> getList(){
-        return bukuRepository.findAll();
-    }
+    
 
     //ini yang diambil dicontroller
     @Override
@@ -78,4 +92,25 @@ public class BukuDaoImpl implements BukuDao{
     public Buku findByIdbuku(String idbuku) {
         return bukuRepository.getOne(idbuku);
     }
+
+	@Override
+	public Buku updateBuku(BukuForm bukuForm) {
+		
+		String idbuku = bukuForm.getIdbuku();
+		Buku buku = null;
+		if(idbuku != null) {
+			buku = new Buku();
+			buku = this.findByIdbuku(idbuku);
+		}
+		
+		buku.setIdbuku(bukuForm.getIdbuku());
+		buku.setJudul(bukuForm.getJudul());
+		buku.setPenerbit(bukuForm.getPenerbit());
+		buku.setPengarang(bukuForm.getPengarang());
+		buku.setJumlah(bukuForm.getJumlah());
+		buku.setJumlahHalaman(bukuForm.getJumlahHalaman());
+		buku.setValidated(bukuForm.isValidated());
+		
+		return bukuRepository.save(buku);
+	}
 }

@@ -11,6 +11,8 @@ public interface BukuDao {
     Buku saveBuku(BukuForm bukuForm);
 
     Buku disabledBuku(BukuForm bukuForm);
+    
+    Buku updateBuku(BukuForm bukuForm);
 
     List<Buku> getListBuku();
 
