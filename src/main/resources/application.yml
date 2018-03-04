@@ -1,0 +1,13 @@
+server:
+  port: 10000
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_boot_buku
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
